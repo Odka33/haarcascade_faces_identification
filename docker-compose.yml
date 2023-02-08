@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  db:
+    build: 
+      context: .
+      dockerfile: db.Dockerfile
+    environment:
+      POSTGRES_USER: exploit
+      POSTGRES_PASSWORD: exploit123
+      POSTGRES_DB: faces_measurements
+    ports:
+      - "5432:5432"
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: exploit.exploit@google.com
+      PGADMIN_DEFAULT_PASSWORD: exploit123
+    ports:
+      - "8080:80"
+    links:
+      - db
